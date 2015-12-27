@@ -24,6 +24,9 @@ export class RouteRequest<T> {
     goto(params: T) {
         gotoRoute(this.route, params);
     }
+    href(params: T) {
+        return href(this.route, params);
+    }
 }
 
 export function bindRoutes(routes: RouteList) {
@@ -42,14 +45,15 @@ export function bindRoute<T>(route: RouteId<T>, pattern: string): RouteRequest<T
 
 // Within a browser, the way we dispatch a route is by simply
 // setting the location.
-export function gotoRoute<T>(route: RouteId<T>, params?: T): void{
+export function gotoRoute<T>(route: RouteId<T>, params?: T): void {
     // Compute the location for this route
-    var url = href(route.id, params);
+    var url = href(route, params);
     // Set location (and let browser trigger the dispatch)
     hasher.setHash(url);
 }
 
-export function href(id: string, params?: {}): string {
+export function href<T>(rid: RouteId<T>, params?: T): string {
+    let id = rid.id;
     var route = routeMap[id];
     if (!route) {
         console.log("Invalid route ", id, " requested");

@@ -1,0 +1,19 @@
+{
+    "name": "ts-redux-browser",
+    "version": "0.1.0",
+    "description": "Functions related to in-browser routing",
+    "main": "js/index.js",
+    "typings": "js/index.d.ts",
+    "scripts": {
+        "prepublish": "tsc",
+        "compile": "tsc",
+        "test": "mocha"
+    },
+    "author": "Michael M. Tiller",
+    "license": "MIT",
+    "dependencies": {
+        "crossroads": "^0.12.2",
+        "hasher": "^1.2.0",
+        "redux": "^3.0.5"
+    }
+}

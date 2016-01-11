@@ -1,7 +1,7 @@
 {
-    "name": "ts-redux-browser",
+    "name": "vada-browser",
     "version": "0.1.0",
-    "description": "Functions related to in-browser routing",
+    "description": "Functions related to in-browser vada routing",
     "main": "js/index.js",
     "typings": "js/index.d.ts",
     "scripts": {

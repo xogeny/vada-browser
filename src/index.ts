@@ -1,12 +1,14 @@
 import crossroads = require('crossroads');
 import hasher = require('hasher');
 
-import { RouteId } from 'ts-redux';
+import { RouteId } from 'vada';
 
 export type RouteList = { [key: string]: string }
 
 export var routeMap: { [key: string]: CrossroadsJs.Route } = {};
 export var reverseMap: { [patter: string]: string } = {};
+
+export const UnknownRoute = "--unknown--";
 
 export function paramObj(route: CrossroadsJs.RouteData): { [key: string]: any } {
     var ret: { [key: string]: any } = {};
@@ -72,7 +74,7 @@ export function initializeRouting(callback: RoutingCallback) {
 
     crossroads.bypassed.add(function(request: string){
 	console.log("Bypassed: ", request);
-	callback("--unknown--", {}, null);
+	callback(UnknownRoute, {}, null);
     });
 
     var parseHash = (newHash: string, oldHash: string) => {

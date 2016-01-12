@@ -5,12 +5,10 @@ import { RouteId } from 'vada';
 
 export type RouteList = { [key: string]: string }
 
-export var routeMap: { [key: string]: CrossroadsJs.Route } = {};
+var routeMap: { [key: string]: CrossroadsJs.Route } = {};
 export var reverseMap: { [patter: string]: string } = {};
 
-export const UnknownRoute = "--unknown--";
-
-export function paramObj(route: CrossroadsJs.RouteData): { [key: string]: any } {
+function paramObj(route: CrossroadsJs.RouteData): { [key: string]: any } {
     var ret: { [key: string]: any } = {};
     for (var i = 0; i < route.route._paramsIds.length; i++) {
         ret[route.route._paramsIds[i]] = route.params[i];
@@ -18,8 +16,7 @@ export function paramObj(route: CrossroadsJs.RouteData): { [key: string]: any } 
     return ret;
 }
 
-export type RoutingCallback = (name: string, params: {},
-			       route: CrossroadsJs.RouteData) => void
+export type RoutingCallback = (name: string, params: {}) => void
 
 export class RouteRequest<T> {
     constructor(public route: RouteId<T>) {}
@@ -69,12 +66,12 @@ export function href<T>(rid: RouteId<T>, params?: T): string {
 export function initializeRouting(callback: RoutingCallback) {
     crossroads.routed.add((request: string, data: CrossroadsJs.RouteData) => {
         var name = reverseMap[data.route._pattern];
-        callback(name, paramObj(data), data)
+        callback(name, paramObj(data))
     })
 
     crossroads.bypassed.add(function(request: string){
 	console.log("Bypassed: ", request);
-	callback(UnknownRoute, {}, null);
+	callback(null, {});
     });
 
     var parseHash = (newHash: string, oldHash: string) => {

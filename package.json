@@ -1,6 +1,6 @@
 {
     "name": "vada-browser",
-    "version": "0.9.2",
+    "version": "0.10.0",
     "description": "Functions related to in-browser vada routing",
     "main": "js/index.js",
     "typings": "js/index.d.ts",

@@ -6,7 +6,7 @@ import { RouteId } from 'vada';
 export type RouteList = { [key: string]: string }
 
 var routeMap: { [key: string]: CrossroadsJs.Route } = {};
-export var reverseMap: { [patter: string]: string } = {};
+export var reverseMap: { [pattern: string]: string } = {};
 
 function paramObj(route: CrossroadsJs.RouteData): { [key: string]: any } {
     var ret: { [key: string]: any } = {};
